@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     cout << "Laboratory work #1. GIT\n";
     cout << "Variant #7. Bank Operations\n";
     cout << "Author: Maslov Eugene\n";
