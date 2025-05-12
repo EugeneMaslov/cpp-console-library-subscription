@@ -2,12 +2,42 @@
 // Маслов Евгений Александрович
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 #include "bank_operations.h"
 #include "file_reader.h"
 #include "constants.h"
+#include "filter.h"
+
+
+void output(bank_operation* operation)
+{
+    /********** вывод даты **********/
+    cout << "**************************** \n* Дата: ";
+    cout << operation->date.day << '.';
+    cout << operation->date.month << '.';
+    cout << operation->date.year << '\n';
+    /********** вывод времени **********/
+    cout << "* " << "Время: ";
+    cout << operation->time.day << ':';
+    cout << operation->time.month << ':';
+    cout << operation->time.year << '\n';
+    /********** вывод вида операции **********/
+    cout << "* Операция: ";
+    cout << operation->account.form << '\n';
+    /********** вывод счёта **********/
+    cout << "* Номер счёта: ";
+    cout << operation->account.inv << '\n';
+    /********** вывод суммы операции **********/
+    cout << "* Сумма операции: ";
+    cout << operation->sum << '\n';
+    /********** вывод назначения **********/
+    cout << "* Назначение: ";
+    cout << operation->aim << '\n';
+    cout << "\n";
+}
 
 int main()
 {
@@ -21,34 +51,49 @@ int main()
     try
     {
         read("data.txt", operations, size);
-        cout << "***** Банковские операции *****\n\n";
+        cout << "*****   *****\n\n";
         for (int i = 0; i < size; i++)
         {
-            /********** вывод даты **********/
-            cout << "**************************** \n* Дата: ";
-            cout << operations[i]->date.day << '.';
-            cout << operations[i]->date.month << '.';
-            cout << operations[i]->date.year << '\n';
-            /********** вывод времени **********/
-            cout << "* " << "Время: ";
-            cout << operations[i]->time.day << ':';
-            cout << operations[i]->time.month << ':';
-            cout << operations[i]->time.year << '\n';
-            /********** вывод вида операции **********/
-            cout << "* Операция: ";
-            cout << operations[i]->account.form << '\n';
-            /********** вывод счёта **********/
-            cout << "* Номер счёта: ";
-            cout << operations[i]->account.inv << '\n';
-            /********** вывод суммы операции **********/
-            cout << "* Сумма операции: ";
-            cout << operations[i]->sum << '\n';
-            /********** вывод назначения **********/
-            cout << "* Назначение: ";
-            cout << operations[i]->aim << '\n';
-            cout << "\n";
+            //output(operations[i]);
         }
-        cout << "**************************** \n";
+        bool (*check_function)(bank_operation*) = NULL; // check_function -    ,    bool,
+                                                           //        book_subscription*
+        cout << "\nВыберите действия :\n";
+        cout << "1) Все операции \"Приход\"\n";
+        cout << "2) Все операции за ноябрь 2021 \n";
+        cout << "3) Comming soon... \n";
+        cout << "\nВаше действие: ";
+        int item;
+        cin >> item;
+        cout << '\n';
+        switch (item)
+        {
+        case 1:
+            check_function = check_bank_operations_coming; //       
+            cout << "***** Все операции \"Приход\" *****\n\n";
+            break;
+        case 2:
+            check_function = check_bank_operation_november_2021; //       
+            cout << "***** Все операции за ноябрь 2021 *****\n\n";
+            break;
+        case 3:
+        {
+            //COMMING SOON
+            break;
+        }
+        default:
+            throw "  ";
+        }
+        if (check_function)
+        {
+            int new_size;
+            bank_operation** filtered = filter(operations, size, check_function, new_size);
+            for (int i = 0; i < new_size; i++)
+            {
+                output(filtered[i]);
+            }
+            delete[] filtered;
+        }
         for (int i = 0; i < size; i++)
         {
             delete operations[i];
@@ -58,4 +103,5 @@ int main()
     {
         cout << error << '\n';
     }
+    return 0;
 }

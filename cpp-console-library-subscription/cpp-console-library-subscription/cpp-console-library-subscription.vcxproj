@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="cpp-console-library-subscription.cpp" />
     <ClCompile Include="file_reader.cpp" />
+    <ClCompile Include="filter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt" />
@@ -149,6 +150,7 @@
     <ClInclude Include="bank_operations.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="file_reader.h" />
+    <ClInclude Include="filter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
