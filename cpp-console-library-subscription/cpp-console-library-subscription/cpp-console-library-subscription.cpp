@@ -20,20 +20,34 @@ int main()
     try
     {
         read("data.txt", operations, size);
+        cout << "***** Банковские операции *****\n\n";
         for (int i = 0; i < size; i++)
         {
+            /********** вывод даты **********/
+            cout << "**************************** \n* Дата: ";
             cout << operations[i]->date.day << '.';
             cout << operations[i]->date.month << '.';
             cout << operations[i]->date.year << '\n';
+            /********** вывод времени **********/
+            cout << "* " << "Время: ";
             cout << operations[i]->time.day << ':';
             cout << operations[i]->time.month << ':';
             cout << operations[i]->time.year << '\n';
+            /********** вывод вида операции **********/
+            cout << "* Операция: ";
             cout << operations[i]->account.form << '\n';
+            /********** вывод счёта **********/
+            cout << "* Номер счёта: ";
             cout << operations[i]->account.inv << '\n';
+            /********** вывод суммы операции **********/
+            cout << "* Сумма операции: ";
             cout << operations[i]->sum << '\n';
+            /********** вывод назначения **********/
+            cout << "* Назначение: ";
             cout << operations[i]->aim << '\n';
-            cout << '\n';
+            cout << "\n";
         }
+        cout << "**************************** \n";
         for (int i = 0; i < size; i++)
         {
             delete operations[i];
