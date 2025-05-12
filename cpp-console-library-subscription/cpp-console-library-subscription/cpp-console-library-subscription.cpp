@@ -5,17 +5,16 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 #include "bank_operations.h"
 #include "file_reader.h"
 #include "constants.h"
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    cout << "Лабораторная работа №1. GIT\n";
-    cout << "Вариант №7. Банковские операции\n";
-    cout << "Автор: Маслов Евгений\n\n";
+    cout << "Laboratory work #1. GIT\n";
+    cout << "Variant #7. Bank Operations\n";
+    cout << "Author: Maslov Eugene\n";
+    cout << "Group: 24PInzh1z\n";
     bank_operation* operations[MAX_FILE_ROWS_COUNT];
     int size;
     try
@@ -58,13 +57,4 @@ int main()
     {
         cout << error << '\n';
     }
-=======
-int main()
-{
-    cout << "Laboratory work #1. GIT\n";
-    cout << "Variant #7. Bank Operations\n";
-    cout << "Author: Maslov Eugene\n";
-    cout << "Group: 24PInzh1z\n";
->>>>>>> data
-    return 0;
 }
